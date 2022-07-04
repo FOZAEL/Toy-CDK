@@ -1,19 +1,21 @@
 
-import * as cdk from "@aws-cdk/core";
-import { Bucket } from "@aws-cdk/aws-s3";
-import { BucketDeployment, Source } from "@aws-cdk/aws-s3-deployment";
-import * as origins from "@aws-cdk/aws-cloudfront-origins";
-import * as acm from "@aws-cdk/aws-certificatemanager";
+import * as cdk from "aws-cdk-lib";
+import { Construct } from "Constructs";
+// import { aws_s3 as Bucket } from "aws-cdk-lib";
+import { aws_s3 as s3 } from 'aws-cdk-lib';
+import { BucketDeployment, Source } from "aws-cdk-lib/aws-s3-deployment";
+import * as origins from "aws-cdk-lib/aws-cloudfront-origins";
+
 import {
   OriginAccessIdentity,
   AllowedMethods,
   ViewerProtocolPolicy,
   OriginProtocolPolicy,
   Distribution,
-} from "@aws-cdk/aws-cloudfront";
+} from "aws-cdk-lib/aws-cloudfront";
 
 export class CloudfrontStack extends cdk.Stack {
-  constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
+  constructor(scope: Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
     
     // Importing ALB domain name
@@ -21,7 +23,7 @@ export class CloudfrontStack extends cdk.Stack {
       
    
     // Web hosting bucket
-    let websiteBucket = new Bucket(this, "websiteBucket", {
+    let websiteBucket = new s3.Bucket(this, "websiteBucket", {
       versioned: false,
       removalPolicy: cdk.RemovalPolicy.DESTROY,
     });

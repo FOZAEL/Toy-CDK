@@ -1,10 +1,11 @@
-import * as cdk from "@aws-cdk/core";
-import { Vpc } from "@aws-cdk/aws-ec2";
-import * as ecs from "@aws-cdk/aws-ecs";
-import * as ecs_patterns from "@aws-cdk/aws-ecs-patterns";
+import * as cdk from "aws-cdk-lib";
+import { Construct } from "Constructs";
+import { Vpc } from "aws-cdk-lib/aws-ec2";
+import * as ecs from "aws-cdk-lib/aws-ecs";
+import * as ecs_patterns from "aws-cdk-lib/aws-ecs-patterns";
 
 export class FargateStack extends cdk.Stack {
-  constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
+  constructor(scope: Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
     
     // VPC
@@ -29,9 +30,7 @@ export class FargateStack extends cdk.Stack {
       },
     });
 
-    // Health check
-    // backendService.targetGroup.configureHealthCheck({ path: "/health" });
-
+ 
     // Load balancer url
     new cdk.CfnOutput(this, "loadBalancerUrl", {
       value: backendService.loadBalancer.loadBalancerDnsName,
