@@ -1,8 +1,6 @@
 
 import * as cdk from "aws-cdk-lib";
 import { Construct } from "Constructs";
-// import { aws_s3 as Bucket } from "aws-cdk-lib";
-import { aws_s3 as s3 } from 'aws-cdk-lib';
 import { BucketDeployment, Source } from "aws-cdk-lib/aws-s3-deployment";
 import * as origins from "aws-cdk-lib/aws-cloudfront-origins";
 
@@ -23,7 +21,7 @@ export class CloudfrontStack extends cdk.Stack {
       
    
     // Web hosting bucket
-    let websiteBucket = new s3.Bucket(this, "websiteBucket", {
+    let websiteBucket = new cdk.aws_s3.Bucket(this, "websiteBucket", {
       versioned: false,
       removalPolicy: cdk.RemovalPolicy.DESTROY,
     });
