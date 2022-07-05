@@ -3,6 +3,7 @@ import * as cdk from "aws-cdk-lib";
 import { Construct } from "Constructs";
 import { BucketDeployment, Source } from "aws-cdk-lib/aws-s3-deployment";
 import * as origins from "aws-cdk-lib/aws-cloudfront-origins";
+import * as path from 'path';
 
 import {
   OriginAccessIdentity,
@@ -28,7 +29,7 @@ export class CloudfrontStack extends cdk.Stack {
 
     // Trigger frontend deployment
     new BucketDeployment(this, "websiteDeployment", {
-      sources: [Source.asset("../frontend/")],
+      sources: [Source.asset(path.join(__dirname, "..", "frontend"))],
       destinationBucket: websiteBucket as any
     });
 

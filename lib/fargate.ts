@@ -3,6 +3,7 @@ import { Construct } from "Constructs";
 import { Vpc } from "aws-cdk-lib/aws-ec2";
 import * as ecs from "aws-cdk-lib/aws-ecs";
 import * as ecs_patterns from "aws-cdk-lib/aws-ecs-patterns";
+import * as path from 'path';
 
 export class FargateStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
@@ -26,7 +27,7 @@ export class FargateStack extends cdk.Stack {
       cpu: 512,
       desiredCount: 2,
       taskImageOptions: {
-        image: ecs.ContainerImage.fromAsset("../backend/"),
+        image: ecs.ContainerImage.fromAsset(path.join(__dirname, "..", "backend")),
       },
     });
 
