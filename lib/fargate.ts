@@ -25,10 +25,12 @@ export class FargateStack extends cdk.Stack {
       cluster: cluster,
       memoryLimitMiB: 1024,
       cpu: 512,
+      listenerPort:5000,
       desiredCount: 2,
       taskImageOptions: {
         image: ecs.ContainerImage.fromAsset(path.join(__dirname, "..", "backend")),
       },
+      
     });
 
  
