@@ -1,9 +1,15 @@
-FROM python:3
+FROM alpine:latest
 
 ADD . /code
 WORKDIR /code
 
-RUN pip install -r requirements.txt
-EXPOSE 5000
+ENV PYTHONUNBUFFERED=1
+RUN apk add --update --no-cache python3 && ln -sf python3 /usr/bin/python
+RUN python3 -m ensurepip
+RUN pip3 install --no-cache --upgrade pip setuptools
 
-ENTRYPOINT ["python", "app.py"]
+
+RUN pip3 install -r requirements.txt
+EXPOSE 80 
+
+ENTRYPOINT ["python3", "app.py"]

@@ -1,6 +1,6 @@
 
 const myform = document.getElementById('myform');
-const url = "http://farga-backe-1rhzktsxby0uf-1417729581.us-east-1.elb.amazonaws.com:5000/hello/"
+const url = "http://farga-backe-1enepkfg8651w-774468774.us-east-1.elb.amazonaws.com/hello/"
 
 
 myform.addEventListener('submit', (e) => {
@@ -14,3 +14,4 @@ myform.addEventListener('submit', (e) => {
         document.getElementById("APImassage").innerHTML = json.massage;
     })
 });
+
